@@ -1,0 +1,16 @@
+<div class="layout">
+    <div class="markdown gap--xsmall">
+      <span class="title title--small">Ingredients</span>
+      <div class="content-element content clamp--9" data-content-max-height="144">
+        {% for ingredient in ingredients %}
+          <p>{{ ingredient }}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+  <div class="title_bar">
+    <img class="image" src="https://trmnl.com/images/plugins/trmnl--render.svg">
+    <span class="title">{{ trmnl.plugin_settings.instance_name }}</span>
+    <span class="instance">Description</span>
+  </div>
