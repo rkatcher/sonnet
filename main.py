@@ -8,29 +8,6 @@ import pandas as pd
 from dotenv import load_dotenv
 
 
-def rows_to_dicts(values: list[list[str]]) -> list[dict[str, str]]:
-    """Convert sheet rows into a list of dicts using the first row as headers."""
-    if not values:
-        return []
-
-    headers = values[0]
-    rows = []
-    for row in values[1:]:
-        # Pad short rows so zip() does not drop trailing columns.
-        padded = row + [""] * (len(headers) - len(row))
-        rows.append(dict(zip(headers, padded)))
-    return rows
-
-
-def post_data(url: str, payload: dict, headers: dict[str, str] | None = None) -> requests.Response:
-    """POST merge_variables JSON to the target URL."""
-    response = requests.post(url, json=payload, headers=headers or {}, timeout=30)
-    if not response.ok:
-        print(f"Error {response.status_code}: {response.text}", file=sys.stderr)
-    response.raise_for_status()
-    return response
-
-
 def main() -> None:
     # load .env file 
     load_dotenv() 
